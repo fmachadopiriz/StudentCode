@@ -4,26 +4,6 @@
         <name>StudentsCode</name>
     </assembly>
     <members>
-        <member name="T:Proyecto.StudentsCode.IButton">
-            <summary>
-            Un botón. Tiene la responsabilidad de conocer el color del botón.
-            </summary>
-        </member>
-        <member name="P:Proyecto.StudentsCode.IButton.Color">
-            <summary>
-            Obtiene y asigna el color del botón en formato RBG hexadecimal (#RRGGBB).
-            </summary>
-        </member>
-        <member name="T:Proyecto.StudentsCode.IClickable">
-            <summary>
-            Los objetos de este tipo pueden ser cliqueados.
-            </summary>
-        </member>
-        <member name="P:Proyecto.StudentsCode.IClickable.OnClick">
-            <summary>
-            Invocado cuando se hace clic en el elemento.
-            </summary>
-        </member>
         <member name="T:Proyecto.StudentsCode.IMainViewAdapter">
             <summary>
             Provee operaciones para manipular una vista.
