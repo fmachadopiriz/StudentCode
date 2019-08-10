@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Proyecto.StudentsCode
 {
@@ -16,7 +17,7 @@ namespace Proyecto.StudentsCode
 
             public IUIElement Parent { get; set; }
 
-            public IList<IUIElement> Children { get; }
+            public IList<IUIElement> Children { get; } = new List<IUIElement>();
 
             internal Background()
             {
@@ -47,8 +48,13 @@ namespace Proyecto.StudentsCode
 
             internal override void Visit(IMainViewAdapter adapter)
             {
-                adapter.CreateButton(400, 180, 160, 50, "#123456");
-            }            
+                adapter.CreateButton(400, 180, 160, 50, "#123456", this.OnClick);
+            }
+
+            internal void OnClick()
+            {
+                Debug.WriteLine($"Button {this.Name} clicked!");
+            }
         }
 
         public IUIElement GetRootElement()

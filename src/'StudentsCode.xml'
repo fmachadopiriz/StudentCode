@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StudentsCode</name>
+    </assembly>
+    <members>
+        <member name="T:Proyecto.StudentsCode.IButton">
+            <summary>
+            Un botón. Tiene la responsabilidad de conocer el color del botón.
+            </summary>
+        </member>
+        <member name="P:Proyecto.StudentsCode.IButton.Color">
+            <summary>
+            Obtiene y asigna el color del botón en formato RBG hexadecimal (#RRGGBB).
+            </summary>
+        </member>
+        <member name="T:Proyecto.StudentsCode.IClickable">
+            <summary>
+            Los objetos de este tipo pueden ser cliqueados.
+            </summary>
+        </member>
+        <member name="P:Proyecto.StudentsCode.IClickable.OnClick">
+            <summary>
+            Invocado cuando se hace clic en el elemento.
+            </summary>
+        </member>
+        <member name="T:Proyecto.StudentsCode.IMainViewAdapter">
+            <summary>
+            Provee operaciones para manipular una vista.
+            </summary>
+        </member>
+        <member name="M:Proyecto.StudentsCode.IMainViewAdapter.ChangeLayout(Proyecto.StudentsCode.Layout)">
+            <summary>
+            Cambia el layout de la vista.
+            </summary>
+            <param name="layout">El nuevo layout.</param>
+        </member>
+        <member name="M:Proyecto.StudentsCode.IMainViewAdapter.CreateButton(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Action)">
+            <summary>
+            Crea un nuevo botón.
+            </summary>
+            <param name="color">El color del botón a crear.</param>
+            <returns>El botón recién creado.</returns>
+        </member>
+        <member name="M:Proyecto.StudentsCode.IMainViewAdapter.Debug(System.String)">
+            <summary>
+            Imprime un mensaje en la consola de Unity.
+            </summary>
+            <param name="message">El mensaje a imprimir.</param>
+        </member>
+        <member name="T:Proyecto.StudentsCode.Layout">
+            <summary>
+            Los diferentes tipos de layout soportados.
+            </summary>
+        </member>
+        <member name="F:Proyecto.StudentsCode.Layout.Grid">
+            <summary>
+            Ver <see cref="!:GridLayout"/>.
+            </summary>
+        </member>
+        <member name="F:Proyecto.StudentsCode.Layout.Vertical">
+            <summary>
+            Ver <see cref="!:GridLayout."/>.
+            </summary>
+        </member>
+        <member name="F:Proyecto.StudentsCode.Layout.Horizontal">
+            <summary>
+            Ver <see cref="!:GridLayout"/>.
+            </summary>
+        </member>
+        <member name="F:Proyecto.StudentsCode.Layout.ContentSizeFitter">
+            <summary>
+            Ver <see cref="!:Canvas"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

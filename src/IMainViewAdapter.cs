@@ -4,6 +4,8 @@
 // </copyright>
 //----------------------------------------------------------------------------------
 
+using System;
+
 namespace Proyecto.StudentsCode
 {
     /// <summary>
@@ -22,12 +24,12 @@ namespace Proyecto.StudentsCode
         /// </summary>
         /// <param name="color">El color del botón a crear.</param>
         /// <returns>El botón recién creado.</returns>
-        IButton CreateButton(int x, int y, int width, int height, string color);
+        string CreateButton(int x, int y, int width, int height, string color, Action onClick);
 
 
-        IDragAndDropCell CreateDragAndDropCell(int x, int y, int width, int height);
+        string CreateDragAndDropCell(int x, int y, int width, int height);
 
-        IDragAndDropItem CreateDragAndDropItem(int x, int y, int width, int height);
+        string CreateDragAndDropItem(int x, int y, int width, int height);
         
         /// <summary>
         /// Imprime un mensaje en la consola de Unity.
