@@ -17,7 +17,7 @@ namespace Proyecto.StudentsCode
         Grid = 0,
 
         /// <summary>
-        /// Ver <see cref="GridLayout."/>.
+        /// Ver <see cref="GridLayout"/>.
         /// </summary>
         Vertical = 1,
 

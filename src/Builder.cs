@@ -1,70 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//--------------------------------------------------------------------------------
+// <copyright file="Layout.cs" company="Universidad Católica del Uruguay">
+//     Copyright (c) Programación II. Derechos reservados.
+// </copyright>
+//--------------------------------------------------------------------------------
+
 using System.Diagnostics;
 
 namespace Proyecto.StudentsCode
 {
-    public class Builder
+    /// <summary>
+    /// Una implementación de referencia de <see cref="IBuilder"/> para mostrar su uso.
+    /// </summary>
+    public class Builder : IBuilder
     {
-        private abstract class UIElement
+        /// <summary>
+        /// Construye una interfaz de usuario interactiva utilizando un <see cref="IMainViewAdapter"/>.
+        /// </summary>
+        /// <param name="adapter">Un <see cref="IMainViewAdapter"/> que permite construir una interfaz de usuario
+        /// interactiva.</param>
+        public void Build(IMainViewAdapter adapter)
         {
-            internal abstract void Visit(IMainViewAdapter adapter);
+            // Si se hace prolijo acá se usan visitor/builder; lo hago hardcoded por brevedad.
+            adapter.ChangeLayout(Layout.ContentSizeFitter);
+            string buttonId = adapter.CreateButton(400, 180, 160, 50, "#FFFFFF", this.OnClick);
+            adapter.SetImage(buttonId, "Images\\BlueButton");
+            string sourceId = adapter.CreateDragAndDropSource(-400, 180, 100, 100);
+            string destinationId = adapter.CreateDragAndDropDestination(400, -180, 100, 100);
+            string itemId = adapter.CreateDragAndDropItem(0, 0, 100, 100);
+            adapter.ChangeParent(itemId, sourceId);
+            string imageId = adapter.CreateImage(-400, -180, 100, 100, "Images\\BlueButton");
         }
-
-        private class Background : UIElement, IUIElement
+        
+        internal void OnClick()
         {
-            public string Name { get; set; }
-
-            public IUIElement Parent { get; set; }
-
-            public IList<IUIElement> Children { get; } = new List<IUIElement>();
-
-            internal Background()
-            {
-                this.Parent = null;
-                this.Children.Add(new Button(this));
-                this.Name = "Background1";
-            }
-
-            internal override void Visit(IMainViewAdapter adapter)
-            {
-                adapter.ChangeLayout(Layout.ContentSizeFitter);
-            }
-        }
-
-        private class Button : UIElement, IUIElement
-        {
-            public string Name { get; set; }
-
-            public IUIElement Parent { get; set; }
-
-            public IList<IUIElement> Children { get; }
-
-            internal Button(IUIElement parent)
-            {
-                this.Parent = parent;
-                this.Name = "Button1";
-            }
-
-            internal override void Visit(IMainViewAdapter adapter)
-            {
-                adapter.CreateButton(400, 180, 160, 50, "#123456", this.OnClick);
-            }
-
-            internal void OnClick()
-            {
-                Debug.WriteLine($"Button {this.Name} clicked!");
-            }
-        }
-
-        public IUIElement GetRootElement()
-        {
-            return new Background();
-        }
-
-        public void CreateElement(IUIElement element, IMainViewAdapter adapter)
-        {
-            (element as UIElement).Visit(adapter);
+            Debug.WriteLine($"Button clicked!");
         }
     }
 }
