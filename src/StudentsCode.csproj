@@ -5,12 +5,9 @@
     <DocumentationFile>'$(MSBuildProjectName).xml'</DocumentationFile>
   </PropertyGroup>
 
-  
-
   <ItemGroup>
     <MySourceFiles Include="$(OutDir)\$(MSBuildProjectName).dll"/>
   </ItemGroup>
-
 
   <Target Name="CopyFiles">
      <Message Text="Copying output file: @(MySourceFiles) to: .\..\..\Unity\Assets" Importance="high"/>
