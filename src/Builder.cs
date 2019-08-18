@@ -13,6 +13,8 @@ namespace Proyecto.StudentsCode
     /// </summary>
     public class Builder : IBuilder
     {
+        private IMainViewAdapter _adapter;
+
         /// <summary>
         /// Construye una interfaz de usuario interactiva utilizando un <see cref="IMainViewAdapter"/>.
         /// </summary>
@@ -20,6 +22,8 @@ namespace Proyecto.StudentsCode
         /// interactiva.</param>
         public void Build(IMainViewAdapter adapter)
         {
+            this._adapter = adapter;
+
             // Si se hace prolijo acá se usan visitor/builder; lo hago hardcoded por brevedad.
             adapter.ChangeLayout(Layout.ContentSizeFitter);
             string buttonId = adapter.CreateButton(400, 180, 160, 50, "#FFFFFF", this.OnClick);
@@ -33,7 +37,7 @@ namespace Proyecto.StudentsCode
         
         internal void OnClick()
         {
-            Debug.WriteLine($"Button clicked!");
+            this._adapter.Debug($"Button clicked!");
         }
     }
 }
