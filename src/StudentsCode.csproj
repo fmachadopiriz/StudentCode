@@ -1,18 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk" InitialTargets="CopyFiles">
-
+<Project Sdk="Microsoft.NET.Sdk">
+<!-- <Project Sdk="Microsoft.NET.Sdk" InitialTargets="CopyFiles"> -->
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <DocumentationFile>'$(MSBuildProjectName).xml'</DocumentationFile>
   </PropertyGroup>
-
+  <!-- <ItemGroup>
+    <MySourceFiles Include="$(OutDir)\$(MSBuildProjectName).dll" />
+  </ItemGroup> -->
   <ItemGroup>
-    <MySourceFiles Include="$(OutDir)\$(MSBuildProjectName).dll"/>
+    <ProjectReference Include="..\..\Common\src\Common.csproj" />
   </ItemGroup>
-
-  <Target Name="CopyFiles">
-     <Message Text="Copying output file: @(MySourceFiles) to: .\..\..\Unity\Assets" Importance="high"/>
-
+  <!-- <Target Name="CopyFiles">
+    <Message Text="Copying output file: @(MySourceFiles) to: .\..\..\Unity\Assets" Importance="high" />
     <Copy SourceFiles="@(MySourceFiles)" DestinationFolder=".\..\..\Unity\Assets" />
-  </Target>
-
+  </Target> -->
 </Project>

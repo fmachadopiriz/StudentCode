@@ -4,8 +4,6 @@
 // </copyright>
 //--------------------------------------------------------------------------------
 
-using System.Diagnostics;
-
 namespace Proyecto.StudentsCode
 {
     /// <summary>
@@ -26,13 +24,25 @@ namespace Proyecto.StudentsCode
 
             // Si se hace prolijo acá se usan visitor/builder; lo hago hardcoded por brevedad.
             adapter.ChangeLayout(Layout.ContentSizeFitter);
-            string buttonId = adapter.CreateButton(400, 180, 160, 50, "#FFFFFF", this.OnClick);
-            adapter.SetImage(buttonId, "Images\\BlueButton");
-            string sourceId = adapter.CreateDragAndDropSource(-400, 180, 100, 100);
-            string destinationId = adapter.CreateDragAndDropDestination(400, -180, 100, 100);
+
+            string sourceCellImageId = adapter.CreateDragAndDropSource(50, 180, 100, 200);
+            adapter.SetImage(sourceCellImageId, "Images\\Cell");
+
+            string destinationCellImageId = adapter.CreateDragAndDropDestination(250, 180, 200, 100);
+            adapter.SetImage(destinationCellImageId, "Images\\Cell");
+
             string itemId = adapter.CreateDragAndDropItem(0, 0, 100, 100);
-            adapter.ChangeParent(itemId, sourceId);
-            string imageId = adapter.CreateImage(-400, -180, 100, 100, "Images\\BlueButton");
+            adapter.SetImage(itemId, "Images\\Hammer");
+            adapter.AddItemToDragAndDropSource(sourceCellImageId, itemId);
+
+            // adapter.MakeDragAndDropItem(itemId);
+            
+            // string destinationId = adapter.CreateDragAndDropDestination(400, -180, 100, 100);
+            
+            // adapter.ChangeParent(itemId, sourceId);
+            // string imageId = adapter.CreateImage(-400, -180, 100, 100);
+            // adapter.SetImage(imageId, "Images\\BlueButton");
+
         }
         
         internal void OnClick()
