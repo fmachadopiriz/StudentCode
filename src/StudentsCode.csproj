@@ -1,19 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
-<!-- <Project Sdk="Microsoft.NET.Sdk" InitialTargets="CopyFiles"> -->
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <DocumentationFile>'$(MSBuildProjectName).xml'</DocumentationFile>
   </PropertyGroup>
-  <!-- <ItemGroup>
-    <MySourceFiles Include="$(OutDir)\$(MSBuildProjectName).dll" />
-  </ItemGroup> -->
   <ItemGroup>
     <ProjectReference Include="..\..\Common\src\Common.csproj" />
   </ItemGroup>
-  <!-- <Target Name="CopyFiles">
-    <Message Text="Copying output file: @(MySourceFiles) to: .\..\..\Unity\Assets" Importance="high" />
-    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder=".\..\..\Unity\Assets" />
-  </Target> -->
+
+  <PropertyGroup>
+    <CopyDestinationPath>.\..\..\Unity\Library\ScriptAssemblies</CopyDestinationPath>
+  </PropertyGroup>
+  <Target Name="CopyFiles">
+    <ItemGroup>
+      <MySourceFiles Include="$(OutDir)\*.dll" />
+    </ItemGroup>
+    <Message Text="Changing read/write to file: $(CopyDestinationPath)\%(MySourceFiles.FileName).dll" Importance="High"/>
+    <Exec Command="attrib -r $(CopyDestinationPath)\%(MySourceFiles.FileName).dll"/>
+    <Message Text="Copying output file: @(MySourceFiles) to: $(CopyDestinationFiles)" Importance="High" />
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder=".\..\..\Unity\Library\ScriptAssemblies" />
+    <Message Text="Changing read only to file: $(CopyDestinationPath)\%(MySourceFiles.FileName).dll" Importance="High"/>
+    <Exec Command="attrib +r $(CopyDestinationPath)\%(MySourceFiles.FileName).dll"/> 
+  </Target> 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.3" />
@@ -21,7 +28,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <AdditionalFiles Include=".\.stylecop\stylecop.json" Link="stylecop.json"/>
+    <AdditionalFiles Include="..\.stylecop\stylecop.json" Link="stylecop.json"/>
   </ItemGroup>
-
 </Project>

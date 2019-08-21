@@ -4,6 +4,8 @@
 // </copyright>
 //--------------------------------------------------------------------------------
 
+using System;
+
 namespace Proyecto.StudentsCode
 {
     /// <summary>
@@ -11,43 +13,42 @@ namespace Proyecto.StudentsCode
     /// </summary>
     public class Builder : IBuilder
     {
-        private IMainViewAdapter Adapter;
+        private IMainViewAdapter adapter;
 
         /// <summary>
         /// Construye una interfaz de usuario interactiva utilizando un <see cref="IMainViewAdapter"/>.
         /// </summary>
-        /// <param name="adapter">Un <see cref="IMainViewAdapter"/> que permite construir una interfaz de usuario
+        /// <param name="providedAdapter">Un <see cref="IMainViewAdapter"/> que permite construir una interfaz de usuario
         /// interactiva.</param>
-        public void Build(IMainViewAdapter adapter)
+        public void Build(IMainViewAdapter providedAdapter)
         {
-            this.Adapter = adapter;
+            this.adapter = providedAdapter ?? throw new ArgumentNullException(nameof(providedAdapter));
 
             // Si se hace prolijo acá se usan visitor/builder; lo hago hardcoded por brevedad.
-            this.Adapter.ChangeLayout(Layout.ContentSizeFitter);
+            this.adapter.ChangeLayout(Layout.ContentSizeFitter);
 
-            string sourceCellImageId = adapter.CreateDragAndDropSource(50, 180, 100, 200);
-            adapter.SetImage(sourceCellImageId, "Images\\Cell");
+            string sourceCellImageId = this.adapter.CreateDragAndDropSource(50, 180, 100, 200);
+            this.adapter.SetImage(sourceCellImageId, "Images\\Cell");
 
-            string destinationCellImageId = adapter.CreateDragAndDropDestination(250, 180, 200, 100);
-            adapter.SetImage(destinationCellImageId, "Images\\Cell");
+            string destinationCellImageId = this.adapter.CreateDragAndDropDestination(250, 180, 200, 100);
+            this.adapter.SetImage(destinationCellImageId, "Images\\Cell");
 
-            string itemId = adapter.CreateDragAndDropItem(0, 0, 100, 100);
-            adapter.SetImage(itemId, "Images\\Hammer");
-            adapter.AddItemToDragAndDropSource(sourceCellImageId, itemId);
+            string itemId = this.adapter.CreateDragAndDropItem(0, 0, 100, 100);
+            this.adapter.SetImage(itemId, "Images\\Hammer");
+            this.adapter.AddItemToDragAndDropSource(sourceCellImageId, itemId);
 
             // adapter.MakeDragAndDropItem(itemId);
-            
-            // string destinationId = adapter.CreateDragAndDropDestination(400, -180, 100, 100);
-            
-            // adapter.ChangeParent(itemId, sourceId);
-            // string imageId = adapter.CreateImage(-400, -180, 100, 100);
-            // adapter.SetImage(imageId, "Images\\BlueButton");
 
+            // string destinationId = adapter.CreateDragAndDropDestination(400, -180, 100, 100);
+
+            // adapter.ChangeParent(itemId, sourceId);
+            string imageId = this.adapter.CreateImage(40, 100, 100, 100);
+            this.adapter.SetImage(imageId, "Images\\BlueButton");
         }
-        
-        internal void OnClick()
+
+        private void OnClick()
         {
-            this.Adapter.Debug($"Button clicked!");
+            this.adapter.Debug($"Button clicked!");
         }
     }
 }

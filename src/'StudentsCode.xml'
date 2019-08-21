@@ -13,7 +13,7 @@
             <summary>
             Construye una interfaz de usuario interactiva utilizando un <see cref="T:Proyecto.StudentsCode.IMainViewAdapter"/>.
             </summary>
-            <param name="adapter">Un <see cref="T:Proyecto.StudentsCode.IMainViewAdapter"/> que permite construir una interfaz de usuario
+            <param name="providedAdapter">Un <see cref="T:Proyecto.StudentsCode.IMainViewAdapter"/> que permite construir una interfaz de usuario
             interactiva.</param>
         </member>
     </members>
