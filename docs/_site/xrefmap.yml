@@ -1,0 +1,28 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Proyecto.StudentsCode
+  name: Proyecto.StudentsCode
+  href: api/Proyecto.StudentsCode.html
+  commentId: N:Proyecto.StudentsCode
+  fullName: Proyecto.StudentsCode
+  nameWithType: Proyecto.StudentsCode
+- uid: Proyecto.StudentsCode.Builder
+  name: Builder
+  href: api/Proyecto.StudentsCode.Builder.html
+  commentId: T:Proyecto.StudentsCode.Builder
+  fullName: Proyecto.StudentsCode.Builder
+  nameWithType: Builder
+- uid: Proyecto.StudentsCode.Builder.Build(Proyecto.StudentsCode.IMainViewAdapter)
+  name: Build(IMainViewAdapter)
+  href: api/Proyecto.StudentsCode.Builder.html#Proyecto_StudentsCode_Builder_Build_Proyecto_StudentsCode_IMainViewAdapter_
+  commentId: M:Proyecto.StudentsCode.Builder.Build(Proyecto.StudentsCode.IMainViewAdapter)
+  fullName: Proyecto.StudentsCode.Builder.Build(Proyecto.StudentsCode.IMainViewAdapter)
+  nameWithType: Builder.Build(IMainViewAdapter)
+- uid: Proyecto.StudentsCode.Builder.Build*
+  name: Build
+  href: api/Proyecto.StudentsCode.Builder.html#Proyecto_StudentsCode_Builder_Build_
+  commentId: Overload:Proyecto.StudentsCode.Builder.Build
+  isSpec: "True"
+  fullName: Proyecto.StudentsCode.Builder.Build
+  nameWithType: Builder.Build

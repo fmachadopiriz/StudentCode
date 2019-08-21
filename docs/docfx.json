@@ -2,8 +2,8 @@
   "metadata": [
     {
       "src": [
-		{
-          "files": ["**/**.csproj"],
+        {
+          "files": [ "**.csproj" ],
           "exclude": [ "**/bin/**", "**/obj/**" ],
           "src": "../src"
         }
@@ -44,11 +44,11 @@
         ],
         "exclude": [
           "obj/**",
-          "_site/**"
+          "site/**"
         ]
       }
     ],
-    "dest": "_site",
+    "dest": "site",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [

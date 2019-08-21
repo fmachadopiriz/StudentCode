@@ -1,5 +1,5 @@
 ﻿//--------------------------------------------------------------------------------
-// <copyright file="Layout.cs" company="Universidad Católica del Uruguay">
+// <copyright file="Builder.cs" company="Universidad Católica del Uruguay">
 //     Copyright (c) Programación II. Derechos reservados.
 // </copyright>
 //--------------------------------------------------------------------------------
@@ -11,7 +11,7 @@ namespace Proyecto.StudentsCode
     /// </summary>
     public class Builder : IBuilder
     {
-        private IMainViewAdapter _adapter;
+        private IMainViewAdapter Adapter;
 
         /// <summary>
         /// Construye una interfaz de usuario interactiva utilizando un <see cref="IMainViewAdapter"/>.
@@ -20,10 +20,10 @@ namespace Proyecto.StudentsCode
         /// interactiva.</param>
         public void Build(IMainViewAdapter adapter)
         {
-            this._adapter = adapter;
+            this.Adapter = adapter;
 
             // Si se hace prolijo acá se usan visitor/builder; lo hago hardcoded por brevedad.
-            adapter.ChangeLayout(Layout.ContentSizeFitter);
+            this.Adapter.ChangeLayout(Layout.ContentSizeFitter);
 
             string sourceCellImageId = adapter.CreateDragAndDropSource(50, 180, 100, 200);
             adapter.SetImage(sourceCellImageId, "Images\\Cell");
@@ -47,7 +47,7 @@ namespace Proyecto.StudentsCode
         
         internal void OnClick()
         {
-            this._adapter.Debug($"Button clicked!");
+            this.Adapter.Debug($"Button clicked!");
         }
     }
 }
