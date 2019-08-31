@@ -10,7 +10,8 @@
   <PropertyGroup>
     <CopyDestinationPath>.\..\..\Unity\Library\ScriptAssemblies</CopyDestinationPath>
   </PropertyGroup>
-  <Target Name="CopyFiles">
+
+  <Target Name="CopyFiles" AfterTargets="Build">
     <ItemGroup>
       <MySourceFiles Include="$(OutDir)\*.dll" />
     </ItemGroup>
@@ -24,10 +25,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.3" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <AdditionalFiles Include="..\.stylecop\stylecop.json" Link="stylecop.json"/>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+    <AdditionalFiles Include="..\stylecop.json" />
   </ItemGroup>
 </Project>

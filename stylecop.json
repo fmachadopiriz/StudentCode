@@ -4,7 +4,13 @@
     "documentationRules": {
       "companyName": "Universidad Católica del Uruguay",
       "copyrightText": "Copyright (c) Programación II. Derechos reservados.",
-      "headerDecoration": "--------------------------------------------------------------------------"
+      "headerDecoration": "--------------------------------------------------------------------------",
+      "documentationCulture": "es-MX",
+      "documentPrivateFields": true,
+      "documentPrivateElements":  true
+    },
+    "orderingRules": {
+      "usingDirectivesPlacement":"outsideNamespace"
     }
   }
 }

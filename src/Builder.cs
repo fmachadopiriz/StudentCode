@@ -15,6 +15,10 @@ namespace Proyecto.StudentsCode
     {
         private IMainViewAdapter adapter;
 
+        private string firstPageName;
+
+        private string nextPageName;
+
         /// <summary>
         /// Construye una interfaz de usuario interactiva utilizando un <see cref="IMainViewAdapter"/>.
         /// </summary>
@@ -24,7 +28,10 @@ namespace Proyecto.StudentsCode
         {
             this.adapter = providedAdapter ?? throw new ArgumentNullException(nameof(providedAdapter));
 
-            // Si se hace prolijo acá se usan visitor/builder; lo hago hardcoded por brevedad.
+            this.adapter.ToDoAfterBuild(this.AfterBuildShowFirstPage);
+
+            this.firstPageName = this.adapter.AddPage();
+
             this.adapter.ChangeLayout(Layout.ContentSizeFitter);
 
             string sourceCellImageId = this.adapter.CreateDragAndDropSource(50, 180, 100, 200);
@@ -37,18 +44,35 @@ namespace Proyecto.StudentsCode
             this.adapter.SetImage(itemId, "Images\\Hammer");
             this.adapter.AddItemToDragAndDropSource(sourceCellImageId, itemId);
 
-            // adapter.MakeDragAndDropItem(itemId);
-
-            // string destinationId = adapter.CreateDragAndDropDestination(400, -180, 100, 100);
-
-            // adapter.ChangeParent(itemId, sourceId);
             string imageId = this.adapter.CreateImage(40, 100, 100, 100);
             this.adapter.SetImage(imageId, "Images\\BlueButton");
+
+            this.adapter.CreateButton(150, 100, 100, 100, "#09FF0064", this.GoToNextPage);
+
+            this.nextPageName = this.adapter.AddPage();
+
+            this.adapter.CreateButton(100, 100, 100, 100, "#BC2FA864", this.GoToFirstPage);
+        }
+
+        private void AfterBuildShowFirstPage()
+        {
+            this.adapter.ShowPage(this.firstPageName);
+        }
+
+        private void GoToFirstPage()
+        {
+            this.adapter.ShowPage(this.firstPageName);
+        }
+
+        private void GoToNextPage()
+        {
+            this.adapter.ShowPage(this.nextPageName);
         }
 
         private void OnClick()
         {
             this.adapter.Debug($"Button clicked!");
+            this.adapter.ShowPage("MainPage");
         }
     }
 }
