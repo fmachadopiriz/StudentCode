@@ -13,14 +13,15 @@
 
   <Target Name="CopyFiles" AfterTargets="Build">
     <ItemGroup>
-      <MySourceFiles Include="$(OutDir)\*.dll" />
+      <AllLibraries Include="$(OutDir)\*.dll" />
     </ItemGroup>
-    <Message Text="Changing read/write to file: $(CopyDestinationPath)\%(MySourceFiles.FileName).dll" Importance="High"/>
-    <Exec Command="attrib -r $(CopyDestinationPath)\%(MySourceFiles.FileName).dll"/>
-    <Message Text="Copying output file: @(MySourceFiles) to: $(CopyDestinationFiles)" Importance="High" />
-    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder=".\..\..\Unity\Library\ScriptAssemblies" />
-    <Message Text="Changing read only to file: $(CopyDestinationPath)\%(MySourceFiles.FileName).dll" Importance="High"/>
-    <Exec Command="attrib +r $(CopyDestinationPath)\%(MySourceFiles.FileName).dll"/> 
+
+    <!-- <Message Text="Changing read/write to file: $(CopyDestinationPath)\%(AllLibraries.FileName).dll" Importance="High"/>
+    <Exec Command="attrib -r $(CopyDestinationPath)\%(AllLibraries.FileName).dll"/> -->
+    <Message Text="Copying output file: @(AllLibraries)" Importance="High" />
+    <Copy SourceFiles="@(AllLibraries)" DestinationFolder=".\..\..\Unity\Assets" />
+    <!-- <Message Text="Changing read only to file: $(CopyDestinationPath)\%(AllLibraries.FileName).dll" Importance="High"/>
+    <Exec Command="attrib +r $(CopyDestinationPath)\%(AllLibraries.FileName).dll"/>  -->
   </Target> 
 
   <ItemGroup>
