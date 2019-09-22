@@ -6,14 +6,14 @@
     <members>
         <member name="T:Proyecto.StudentsCode.Builder">
             <summary>
-            Una implementación de referencia de <see cref="T:Proyecto.StudentsCode.IBuilder"/> para mostrar su uso.
+            Una implementación de referencia de <see cref="T:Proyecto.Common.IBuilder"/> para mostrar su uso.
             </summary>
         </member>
-        <member name="M:Proyecto.StudentsCode.Builder.Build(Proyecto.StudentsCode.IMainViewAdapter)">
+        <member name="M:Proyecto.StudentsCode.Builder.Build(Proyecto.Common.IMainViewAdapter)">
             <summary>
-            Construye una interfaz de usuario interactiva utilizando un <see cref="T:Proyecto.StudentsCode.IMainViewAdapter"/>.
+            Construye una interfaz de usuario interactiva utilizando un <see cref="T:Proyecto.Common.IMainViewAdapter"/>.
             </summary>
-            <param name="providedAdapter">Un <see cref="T:Proyecto.StudentsCode.IMainViewAdapter"/> que permite construir una interfaz de usuario
+            <param name="providedAdapter">Un <see cref="T:Proyecto.Common.IMainViewAdapter"/> que permite construir una interfaz de usuario
             interactiva.</param>
         </member>
     </members>
