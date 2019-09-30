@@ -38,30 +38,34 @@ namespace Proyecto.StudentsCode
             this.adapter.ChangeLayout(Layout.ContentSizeFitter);
 
             imageId = this.adapter.CreateImage(-(1024 / 2 - 100 / 2), -(768 / 2 - 100 / 2), 100, 100);
-            this.adapter.SetImage(imageId, "Images\\Cell");
+            this.adapter.SetImage(imageId, "color-splash-trail-76686.jpg");
 
             imageId = this.adapter.CreateImage(1024 / 2 - 100 / 2, 768 / 2 - 100 / 2, 100, 100);
-            this.adapter.SetImage(imageId, "Images\\Cell");
-
+            this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
 
             string sourceCellImageId = this.adapter.CreateDragAndDropSource(50, 180, 100, 200);
-            this.adapter.SetImage(sourceCellImageId, "Images\\Cell");
+            this.adapter.SetImage(sourceCellImageId, "Cell.png");
 
             string destinationCellImageId = this.adapter.CreateDragAndDropDestination(250, 180, 200, 100);
-            this.adapter.SetImage(destinationCellImageId, "Images\\Cell");
+            this.adapter.SetImage(destinationCellImageId, "Cell.png");
 
             string itemId = this.adapter.CreateDragAndDropItem(0, 0, 100, 100);
-            this.adapter.SetImage(itemId, "Images\\Hammer");
+            this.adapter.SetImage(itemId, "Hammer.png");
             this.adapter.AddItemToDragAndDropSource(sourceCellImageId, itemId);
 
             imageId = this.adapter.CreateImage(40, 100, 100, 100);
-            this.adapter.SetImage(imageId, "Images\\BlueButton");
+            this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
 
-            this.adapter.CreateButton(150, 100, 100, 100, "#09FF0064", this.GoToNextPage);
+            string buttonId = this.adapter.CreateButton(150, 100, 100, 100, "#09FF0064", this.GoToNextPage);
+            this.adapter.SetImage(buttonId, "BlueButton.png");
 
             this.nextPageName = this.adapter.AddPage();
+            this.adapter.ChangeLayout(Layout.Grid);
 
-            this.adapter.CreateButton(100, 100, 100, 100, "#BC2FA864", this.GoToFirstPage);
+            buttonId = this.adapter.CreateButton(100, 100, 100, 100, "#BC2FA864", this.GoToFirstPage);
+            this.adapter.SetImage(buttonId, "BlueButton.png");
+            imageId = this.adapter.CreateImage(40, 100, 100, 100);
+            this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
         }
 
         private void AfterBuildShowFirstPage()
