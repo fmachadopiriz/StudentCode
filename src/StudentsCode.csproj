@@ -1,32 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
+    <DebugType>portable</DebugType>
+    <!-- <RuntimeIdentifier>win10-x64</RuntimeIdentifier> -->
     <DocumentationFile>'$(MSBuildProjectName).xml'</DocumentationFile>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\src\Common.csproj" />
-  </ItemGroup>
 
-  <PropertyGroup>
-    <CopyDestinationPath>.\..\..\Unity\Library\ScriptAssemblies</CopyDestinationPath>
-  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PII_Proyecto2019\Common\src\Common.csproj" />
+  </ItemGroup>
 
   <Target Name="CopyFiles" AfterTargets="Build">
     <ItemGroup>
       <AllLibraries Include="$(OutDir)\*.dll" />
     </ItemGroup>
 
-    <!-- <Message Text="Changing read/write to file: $(CopyDestinationPath)\%(AllLibraries.FileName).dll" Importance="High"/>
-    <Exec Command="attrib -r $(CopyDestinationPath)\%(AllLibraries.FileName).dll"/> -->
-    <Message Text="Copying output file: @(AllLibraries)" Importance="High" />
-    <Copy SourceFiles="@(AllLibraries)" DestinationFolder=".\..\..\Unity\Assets" />
-    <!-- <Message Text="Changing read only to file: $(CopyDestinationPath)\%(AllLibraries.FileName).dll" Importance="High"/>
-    <Exec Command="attrib +r $(CopyDestinationPath)\%(AllLibraries.FileName).dll"/>  -->
+    <Message Text="Copying output file: @(AllLibraries) to: ..\..\PII_Proyecto2019\Unity\Assets" Importance="High" />
+    <Copy SourceFiles="@(AllLibraries)" DestinationFolder="..\..\PII_Proyecto2019\Unity\Assets" />
   </Target> 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     <AdditionalFiles Include="..\stylecop.json" />
-  </ItemGroup>
+  </ItemGroup> 
 </Project>
