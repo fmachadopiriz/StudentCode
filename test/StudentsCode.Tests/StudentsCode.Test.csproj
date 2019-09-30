@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <DebugType>portable</DebugType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0"/>
+    <PackageReference Include="xunit" Version="2.4.1"/>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1"/>
+    <PackageReference Include="Moq" Version="4.13.0"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PII_Proyecto2019\Common\src\Common.csproj"/>
+    <ProjectReference Include="..\..\src\StudentsCode.csproj"/>
+  </ItemGroup>
+</Project>

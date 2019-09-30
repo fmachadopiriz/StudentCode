@@ -38,7 +38,14 @@ namespace Proyecto.StudentsCode
             this.adapter.ChangeLayout(Layout.ContentSizeFitter);
 
             imageId = this.adapter.CreateImage(-(1024 / 2 - 100 / 2), -(768 / 2 - 100 / 2), 100, 100);
-            this.adapter.SetImage(imageId, "color-splash-trail-76686.jpg");
+            try
+            {
+                this.adapter.SetImage(imageId, "color-splash-trail-76686.jpg");
+            }
+            catch (Exception ex)
+            {
+                this.adapter.Debug(ex.Message);
+            }
 
             imageId = this.adapter.CreateImage(1024 / 2 - 100 / 2, 768 / 2 - 100 / 2, 100, 100);
             this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
@@ -68,7 +75,7 @@ namespace Proyecto.StudentsCode
             this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
         }
 
-        private void AfterBuildShowFirstPage()
+        public void AfterBuildShowFirstPage()
         {
             this.adapter.ShowPage(this.firstPageName);
         }
