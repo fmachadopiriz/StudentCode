@@ -31,9 +31,9 @@ namespace Proyecto.StudentsCode
 
             this.adapter = providedAdapter ?? throw new ArgumentNullException(nameof(providedAdapter));
 
-            this.adapter.ToDoAfterBuild(this.AfterBuildShowFirstPage);
+            this.adapter.AfterBuild += this.AfterBuildShowFirstPage; //this.adapter.ToDoAfterBuild(this.AfterBuildShowFirstPage);
 
-            this.firstPageName = this.adapter.AddPage();
+            this.firstPageName = this.adapter.AddPage(); //this.adapter.AddPage();
 
             this.adapter.ChangeLayout(Layout.ContentSizeFitter);
 
@@ -66,13 +66,18 @@ namespace Proyecto.StudentsCode
             string buttonId = this.adapter.CreateButton(150, 100, 100, 100, "#09FF0064", this.GoToNextPage);
             this.adapter.SetImage(buttonId, "BlueButton.png");
 
-            this.nextPageName = this.adapter.AddPage();
+            this.adapter.SetDrawingRect(-320, 180, 640, 360);
+            this.adapter.OnDrawing += this.Drawing;
+
+            this.nextPageName = this.adapter.AddPage(); //this.adapter.AddPage();
             this.adapter.ChangeLayout(Layout.Grid);
 
             buttonId = this.adapter.CreateButton(100, 100, 100, 100, "#BC2FA864", this.GoToFirstPage);
             this.adapter.SetImage(buttonId, "BlueButton.png");
             imageId = this.adapter.CreateImage(40, 100, 100, 100);
             this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
+
+            string inputText = this.adapter.CreateInputField(300, 300, 100, 100, this.OnClick);
         }
 
         public void AfterBuildShowFirstPage()
@@ -95,7 +100,13 @@ namespace Proyecto.StudentsCode
         private void OnClick()
         {
             this.adapter.Debug($"Button clicked!");
-            this.adapter.ShowPage("MainPage");
+            this.adapter.ShowPage("MainPage");//this.adapter.ShowPage("MainPage");
+        }
+
+        private void Drawing(float x, float y)
+        {
+            string imageId = this.adapter.CreateImage((int)x, (int)y, 10, 10);
+            this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
         }
     }
 }
