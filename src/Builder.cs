@@ -20,6 +20,10 @@ namespace Proyecto.StudentsCode
 
         private string nextPageName;
 
+        private string dropImage;
+
+        private string dragImage;
+
         /// <summary>
         /// Construye una interfaz de usuario interactiva utilizando un <see cref="IMainViewAdapter"/>.
         /// </summary>
@@ -31,24 +35,19 @@ namespace Proyecto.StudentsCode
 
             this.adapter = providedAdapter ?? throw new ArgumentNullException(nameof(providedAdapter));
 
-            this.adapter.AfterBuild += this.AfterBuildShowFirstPage; //this.adapter.ToDoAfterBuild(this.AfterBuildShowFirstPage);
+            this.adapter.AfterBuild += this.AfterBuildShowFirstPage;
 
-            this.firstPageName = this.adapter.AddPage(); //this.adapter.AddPage();
+            this.firstPageName = this.adapter.AddPage();
 
             this.adapter.ChangeLayout(Layout.ContentSizeFitter);
 
-            imageId = this.adapter.CreateImage(-(1024 / 2 - 100 / 2), -(768 / 2 - 100 / 2), 100, 100);
-            try
-            {
-                this.adapter.SetImage(imageId, "color-splash-trail-76686.jpg");
-            }
-            catch (Exception ex)
-            {
-                this.adapter.Debug(ex.Message);
-            }
+            this.dragImage = this.adapter.CreateImage(-(1024 / 2 - 100 / 2), -(768 / 2 - 100 / 2), 100, 100);
+            this.adapter.SetImage(this.dragImage, "color-splash-trail-76686.jpg");
+            this.adapter.MakeDraggable(this.dragImage, true);
+            this.adapter.OnDrop += this.OnDrop;
 
-            imageId = this.adapter.CreateImage(1024 / 2 - 100 / 2, 768 / 2 - 100 / 2, 100, 100);
-            this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
+            this.dropImage = this.adapter.CreateImage(1024 / 2 - 100 / 2, 768 / 2 - 100 / 2, 200, 200);
+            this.adapter.SetImage(this.dropImage, "pexels-photo-1545505.jpeg");
 
             string sourceCellImageId = this.adapter.CreateDragAndDropSource(50, 180, 100, 200);
             this.adapter.SetImage(sourceCellImageId, "Cell.png");
@@ -60,8 +59,8 @@ namespace Proyecto.StudentsCode
             this.adapter.SetImage(itemId, "Hammer.png");
             this.adapter.AddItemToDragAndDropSource(sourceCellImageId, itemId);
 
-            imageId = this.adapter.CreateImage(40, 100, 100, 100);
-            this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
+            // imageId = this.adapter.CreateImage(40, 100, 100, 100);
+            // this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
 
             string buttonId = this.adapter.CreateButton(150, 100, 100, 100, "#09FF0064", this.GoToNextPage);
             this.adapter.SetImage(buttonId, "BlueButton.png");
@@ -101,6 +100,11 @@ namespace Proyecto.StudentsCode
         {
             this.adapter.Debug($"Button clicked!");
             this.adapter.ShowPage("MainPage");//this.adapter.ShowPage("MainPage");
+        }
+
+        private void OnDrop(string elementName, float x, float y)
+        {
+            this.adapter.SetParentAndCenter(elementName, this.dropImage);
         }
 
         private void Drawing(float x, float y)
