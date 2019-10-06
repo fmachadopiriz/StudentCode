@@ -41,10 +41,12 @@ namespace Proyecto.StudentsCode
 
             this.adapter.ChangeLayout(Layout.ContentSizeFitter);
 
-            this.dragImage = this.adapter.CreateImage(-(1024 / 2 - 100 / 2), -(768 / 2 - 100 / 2), 100, 100);
-            this.adapter.SetImage(this.dragImage, "color-splash-trail-76686.jpg");
-            this.adapter.MakeDraggable(this.dragImage, true);
+            // this.dragImage = this.adapter.CreateImage(-(1024 / 2 - 100 / 2), -(768 / 2 - 100 / 2), 100, 100);
+            // this.adapter.SetImage(this.dragImage, "color-splash-trail-76686.jpg");
+            string labelId = this.adapter.CreateLabel(-(1024 / 2 - 100 / 2), -(768 / 2 - 100 / 2), 100, 100);
+            this.adapter.MakeDraggable(labelId, true);
             this.adapter.OnDrop += this.OnDrop;
+            this.adapter.SetFont(labelId, true, true, 24);
 
             this.dropImage = this.adapter.CreateImage(1024 / 2 - 100 / 2, 768 / 2 - 100 / 2, 200, 200);
             this.adapter.SetImage(this.dropImage, "pexels-photo-1545505.jpeg");

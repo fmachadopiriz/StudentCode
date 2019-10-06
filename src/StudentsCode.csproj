@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <DebugType>portable</DebugType>
-    <!-- <RuntimeIdentifier>win10-x64</RuntimeIdentifier> -->
     <DocumentationFile>'$(MSBuildProjectName).xml'</DocumentationFile>
   </PropertyGroup>
 
