@@ -105,7 +105,7 @@ namespace Proyecto.StudentsCode
 
         private void Drawing(float x, float y)
         {
-            string imageId = this.adapter.CreateImage((int)x, (int)y, 10, 10);
+            string imageId = this.adapter.CreateImage(x, y, 10, 10);
             this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
         }
     }
