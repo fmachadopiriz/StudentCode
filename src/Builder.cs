@@ -24,6 +24,8 @@ namespace Proyecto.StudentsCode
 
         private string dragImage;
 
+        private string labelId;
+
         /// <summary>
         /// Construye una interfaz de usuario interactiva utilizando un <see cref="IMainViewAdapter"/>.
         /// </summary>
@@ -43,7 +45,7 @@ namespace Proyecto.StudentsCode
 
             // this.dragImage = this.adapter.CreateImage(-(1024 / 2 - 100 / 2), -(768 / 2 - 100 / 2), 100, 100);
             // this.adapter.SetImage(this.dragImage, "color-splash-trail-76686.jpg");
-            string labelId = this.adapter.CreateLabel(-(1024 / 2 - 100 / 2), -(768 / 2 - 100 / 2), 100, 100);
+            this.labelId = this.adapter.CreateLabel(-(1024 / 2 - 100 / 2), -(768 / 2 - 100 / 2), 100, 100);
             this.adapter.MakeDraggable(labelId, true);
             this.adapter.OnDrop += this.OnDrop;
             this.adapter.SetFont(labelId, true, true, 24);
@@ -78,7 +80,7 @@ namespace Proyecto.StudentsCode
             imageId = this.adapter.CreateImage(40, 100, 100, 100);
             this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
 
-            string inputText = this.adapter.CreateInputField(300, 300, 100, 100, this.OnClick);
+            string inputText = this.adapter.CreateInputField(300, 300, 100, 100, null, this.OnEndEdit);
         }
 
         public void AfterBuildShowFirstPage()
@@ -86,22 +88,31 @@ namespace Proyecto.StudentsCode
             this.adapter.ShowPage(this.firstPageName);
         }
 
-        private void GoToFirstPage()
+        private void GoToFirstPage(string clickedButtonName)
         {
+            this.adapter.Debug($"Click on: {clickedButtonName}");
             this.adapter.ShowPage(this.firstPageName);
             this.adapter.PlayAudio("Speech On.wav");
         }
 
-        private void GoToNextPage()
+        private void GoToNextPage(string clickedButtonName)
         {
+            this.adapter.Debug($"Click on: {clickedButtonName}");
             this.adapter.ShowPage(this.nextPageName);
             this.adapter.PlayAudio("Speech Off.wav");
         }
 
-        private void OnClick()
+        private void OnTextChanged(string changedInputName, string newText)
         {
-            this.adapter.Debug($"Button clicked!");
-            this.adapter.ShowPage("MainPage");//this.adapter.ShowPage("MainPage");
+            this.adapter.Debug($"Changed: {changedInputName}");
+            this.adapter.Debug($"New text: {newText}");
+        }
+
+        private void OnEndEdit(string changedInputName, string newText)
+        {
+            this.adapter.SetText(this.labelId, newText);
+            this.adapter.Debug($"End edit: {changedInputName}");
+            this.adapter.Debug($"New text: {newText}");
         }
 
         private void OnDrop(string elementName, float x, float y)
