@@ -26,6 +26,10 @@ namespace Proyecto.StudentsCode
 
         private string labelId;
 
+        string sourceCellImageId;
+
+        string destinationCellImageId;
+
         /// <summary>
         /// Construye una interfaz de usuario interactiva utilizando un <see cref="IMainViewAdapter"/>.
         /// </summary>
@@ -35,7 +39,16 @@ namespace Proyecto.StudentsCode
         {
             string imageId;
 
-            this.adapter = providedAdapter ?? throw new ArgumentNullException(nameof(providedAdapter));
+            //this.adapter = providedAdapter ?? throw new ArgumentNullException(nameof(providedAdapter));
+
+            if (providedAdapter !=  null)
+            {
+                this.adapter = providedAdapter;
+            }
+            else
+            {
+                throw new ArgumentNullException(nameof(providedAdapter));
+            }
 
             this.adapter.AfterBuild += this.AfterBuildShowFirstPage;
 
@@ -53,15 +66,20 @@ namespace Proyecto.StudentsCode
             this.dropImage = this.adapter.CreateImage(1024 / 2 - 100 / 2, 768 / 2 - 100 / 2, 200, 200);
             this.adapter.SetImage(this.dropImage, "pexels-photo-1545505.jpeg");
 
-            string sourceCellImageId = this.adapter.CreateDragAndDropSource(50, 180, 100, 200);
-            this.adapter.SetImage(sourceCellImageId, "Cell.png");
+            //**string sourceCellImageId = this.adapter.CreateDragAndDropSource(50, 180, 100, 200);
+            this.sourceCellImageId = this.adapter.CreateImage(50, 180, 100, 200);
+            this.adapter.SetImage(this.sourceCellImageId, "Cell.png");
 
-            string destinationCellImageId = this.adapter.CreateDragAndDropDestination(250, 180, 200, 100);
-            this.adapter.SetImage(destinationCellImageId, "Cell.png");
+            //**string destinationCellImageId = this.adapter.CreateDragAndDropDestination(250, 180, 200, 100);
+            this.destinationCellImageId = this.adapter.CreateImage(250, 180, 200, 100);
+            this.adapter.SetImage(this.destinationCellImageId, "Cell.png");
 
-            string itemId = this.adapter.CreateDragAndDropItem(0, 0, 100, 100);
-            this.adapter.SetImage(itemId, "Hammer.png");
-            this.adapter.AddItemToDragAndDropSource(sourceCellImageId, itemId);
+            //**string itemId = this.adapter.CreateDragAndDropItem(0, 0, 100, 100);
+            this.dragImage = this.adapter.CreateImage(0, 0, 100, 100);
+            this.adapter.SetImage(this.dragImage, "Hammer.png");
+            //**this.adapter.AddItemToDragAndDropSource(sourceCellImageId, itemId);
+            this.adapter.SetParent(this.dragImage, sourceCellImageId);
+            this.adapter.MakeDraggable(this.dragImage, true);
 
             // imageId = this.adapter.CreateImage(40, 100, 100, 100);
             // this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
@@ -117,7 +135,14 @@ namespace Proyecto.StudentsCode
 
         private void OnDrop(string elementName, float x, float y)
         {
-            this.adapter.SetParentAndCenter(elementName, this.dropImage);
+            if (elementName == this.dragImage)
+            {
+                
+            }
+            else
+            {
+                this.adapter.SetParentAndCenter(elementName, this.dropImage);
+            }
         }
 
         private void Drawing(float x, float y)
