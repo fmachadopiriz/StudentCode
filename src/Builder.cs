@@ -89,14 +89,21 @@ namespace Proyecto.StudentsCode
             this.adapter.OnDrawing += this.Drawing;
 
             this.nextPageName = this.adapter.AddPage(); //this.adapter.AddPage();
-            this.adapter.ChangeLayout(Layout.Grid);
+            //this.adapter.ChangeLayout(Layout.Grid);
 
-            buttonId = this.adapter.CreateButton(100, 100, 100, 100, "#BC2FA864", this.GoToFirstPage);
+            string gridId = this.adapter.CreateImage(-250, 250, 500, 200);
+            this.adapter.ChangeLayout(gridId, Layout.Grid);
+
+            buttonId = this.adapter.CreateButton(0, 0, 100, 100, "#BC2FA864", this.GoToFirstPage);
             this.adapter.SetImage(buttonId, "BlueButton.png");
+            this.adapter.SetParent(buttonId, gridId);
+
             itemId = this.adapter.CreateImage(40, 100, 100, 100);
             this.adapter.SetImage(itemId, "pexels-photo-1545505.jpeg");
+            this.adapter.SetParent(itemId, gridId);
 
             string inputText = this.adapter.CreateInputField(300, 300, 100, 100, null, this.OnEndEdit);
+            this.adapter.SetParent(inputText, gridId);
         }
 
         public void AfterBuildShowFirstPage()
