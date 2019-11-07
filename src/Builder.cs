@@ -99,7 +99,7 @@ namespace Proyecto.StudentsCode
             this.adapter.SetParent(buttonId, gridId);
 
             itemId = this.adapter.CreateImage(40, 100, 100, 100);
-            this.adapter.SetImage(itemId, "pexels-photo-1545505.jpeg");
+            this.adapter.SetImage(itemId, "BlueButton.png");
             this.adapter.SetParent(itemId, gridId);
 
             string inputText = this.adapter.CreateInputField(300, 300, 100, 100, null, this.OnEndEdit);
@@ -115,14 +115,14 @@ namespace Proyecto.StudentsCode
         {
             this.adapter.Debug($"Click on: {clickedButtonName}");
             this.adapter.ShowPage(this.firstPageName);
-            this.adapter.PlayAudio("Speech On.wav");
+            this.adapter.PlayAudio("birds.wav");
         }
 
         private void GoToNextPage(string clickedButtonName)
         {
             this.adapter.Debug($"Click on: {clickedButtonName}");
             this.adapter.ShowPage(this.nextPageName);
-            this.adapter.PlayAudio("Speech Off.wav");
+            this.adapter.PlayAudio("Birds.wav");
         }
 
         private void OnTextChanged(string changedInputName, string newText)
@@ -157,7 +157,7 @@ namespace Proyecto.StudentsCode
         {
             this.adapter.Debug($"Drawing {x}@{y}");
             string imageId = this.adapter.CreateImage(x, y, 10, 10);
-            this.adapter.SetImage(imageId, "pexels-photo-1545505.jpeg");
+            this.adapter.SetImage(imageId, "bluebutton.jpeg");
         }
     }
 }
