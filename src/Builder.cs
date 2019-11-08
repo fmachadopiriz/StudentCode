@@ -28,6 +28,8 @@ namespace Proyecto.StudentsCode
 
         private string labelId;
 
+        private string hideButtonName;
+
         /// <summary>
         /// Construye una interfaz de usuario interactiva utilizando un <see cref="IMainViewAdapter"/>.
         /// </summary>
@@ -59,6 +61,7 @@ namespace Proyecto.StudentsCode
             // Etiqueta. Posicionada verticalmente en el medio y horizontalmente contra la izquierda.
             this.labelId = this.adapter.CreateLabel((worldWidth / 2 - itemWidth / 2), 0, itemWidth, itemHeight);
             this.adapter.SetFont(labelId, true, true, 24);
+            this.adapter.SetText(labelId, "Este es un texto bien largo", true);
 
             // Image. Posicionada en la esquina inferior derecha.
             //**string destinationCellImageId = this.adapter.CreateDragAndDropDestination(250, 180, 200, 100);
@@ -87,6 +90,9 @@ namespace Proyecto.StudentsCode
 
             this.adapter.SetDrawingRect(-320, 180, 640, 360);
             this.adapter.OnDrawing += this.Drawing;
+
+            this.hideButtonName = this.adapter.CreateButton(250, 200, 100, 100, "#09FF0064", this.Hide);
+            this.adapter.SetText(this.hideButtonName, "Hide");
 
             this.nextPageName = this.adapter.AddPage(); //this.adapter.AddPage();
             //this.adapter.ChangeLayout(Layout.Grid);
@@ -158,6 +164,14 @@ namespace Proyecto.StudentsCode
             this.adapter.Debug($"Drawing {x}@{y}");
             string imageId = this.adapter.CreateImage(x, y, 10, 10);
             this.adapter.SetImage(imageId, "bluebutton.jpeg");
+        }
+
+        private bool hidden = false;
+
+        private void Hide(string clickedButtonName)
+        {
+            this.hidden = !this.hidden;
+            this.adapter.SetActive(this.dropImage, !this.hidden);
         }
     }
 }
