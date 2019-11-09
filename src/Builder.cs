@@ -61,7 +61,10 @@ namespace Proyecto.StudentsCode
             // Etiqueta. Posicionada verticalmente en el medio y horizontalmente contra la izquierda.
             this.labelId = this.adapter.CreateLabel((worldWidth / 2 - itemWidth / 2), 0, itemWidth, itemHeight);
             this.adapter.SetFont(labelId, true, true, 24);
-            this.adapter.SetText(labelId, "Este es un texto bien largo", true);
+
+            string fileContent = adapter.GetFileContents("test.txt");
+
+            this.adapter.SetText(labelId, $"<color=white>{fileContent}</color>", true);
 
             // Image. Posicionada en la esquina inferior derecha.
             //**string destinationCellImageId = this.adapter.CreateDragAndDropDestination(250, 180, 200, 100);
